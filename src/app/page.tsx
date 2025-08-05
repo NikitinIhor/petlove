@@ -1,9 +1,14 @@
 import { NextPage } from "next";
+import MainLoader from "./components/MainLoader";
 
 interface HomeProps {}
 
 const Home: NextPage<HomeProps> = () => {
-  return <div className="container">Home</div>;
+  return (
+    <div>
+      <MainLoader />
+    </div>
+  );
 };
 
 export default Home;
