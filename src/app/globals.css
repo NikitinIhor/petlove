@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "./assets/styles/container.css";
+@import "./assets/styles/reset.css";
+
+:root {
+  --white: #ffffff;
+  --black: #262626;
+  --yellow: #f6b83d;
+  --yellow-light: #fff4df;
+}
+
+body {
+  background: #f9f9f9;
+  color: var(--black);
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+}
