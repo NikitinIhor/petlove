@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 const MainLoader: NextPage = () => {
   const router = useRouter();
 
-  const [showPercent, setShowPercent] = useState(false);
-  const [percent, setPercent] = useState(0);
+  const [showPercent, setShowPercent] = useState<boolean>(false);
+  const [percent, setPercent] = useState<number>(0);
 
   useEffect(() => {
     const logoTimer = setTimeout(() => {
