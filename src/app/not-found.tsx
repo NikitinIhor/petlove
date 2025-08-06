@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const NotFoundPage: React.FC = () => {
   return (
@@ -22,12 +23,13 @@ const NotFoundPage: React.FC = () => {
           <span className="text-white w-[215px] mb-5 mx-auto md:text-2xl md:w-[320px]">
             Ooops! This page not found :(
           </span>
-          <button
-            className="text-yellow-500 bg-white rounded-full w-[150px] h-[42px] mx-auto border-2 cursor-pointer
-            hover:bg-yellow-500 hover:text-white transition-colors duration-300 ease-in-out"
+          <Link
+            href="/register"
+            className="text-yellow-500 bg-white rounded-full w-[150px] h-[42px] border-2 border-white cursor-pointer
+             hover:bg-yellow-500 hover:text-white transition-colors duration-300 ease-in-out flex items-center justify-center mx-auto"
           >
             To home page
-          </button>
+          </Link>
         </div>
       </div>
     </div>

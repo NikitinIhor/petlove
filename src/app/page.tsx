@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import MainLoader from "./components/MainLoader";
+import MainLoader from "./(app)/components/MainLoader";
 
 interface HomeProps {}
 
