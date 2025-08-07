@@ -26,13 +26,17 @@ const Header: NextPage<HeaderProps> = () => {
               fill
               priority
               className="object-contain"
+              sizes="(max-width: 768px) 76px, 105px"
             />
           </div>
         </Link>
 
         <nav className="hidden xl:block">
           <ul className="flex items-center gap-3">
-            <li className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full">
+            <li
+              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
+            hover:border-yellow-500 transition-colors duration-200 ease-in"
+            >
               <Link
                 href="/news"
                 className={
@@ -42,7 +46,10 @@ const Header: NextPage<HeaderProps> = () => {
                 News
               </Link>
             </li>
-            <li className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full">
+            <li
+              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
+            hover:border-yellow-500 transition-colors duration-200 ease-in"
+            >
               <Link
                 href="/find"
                 className={
@@ -52,7 +59,10 @@ const Header: NextPage<HeaderProps> = () => {
                 Find pet
               </Link>
             </li>
-            <li className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full">
+            <li
+              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
+            hover:border-yellow-500 transition-colors duration-200 ease-in"
+            >
               <Link
                 href="/friends"
                 className={
@@ -68,7 +78,8 @@ const Header: NextPage<HeaderProps> = () => {
         <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
           <Link
             className="flex justify-center items-center text-white uppercase
-            w-[119px] h-[50px] bg-[var(--yellow)] rounded-full"
+            w-[119px] h-[50px] bg-[var(--yellow)] rounded-full
+            hover:bg-[var(--yellow-light)] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
             href="/login"
           >
             Log In
@@ -76,7 +87,8 @@ const Header: NextPage<HeaderProps> = () => {
 
           <Link
             className="flex justify-center items-center text-[#F6B83D] uppercase
-            w-[149px] h-[50px] bg-[var(--yellow-light)] rounded-full"
+            w-[149px] h-[50px] bg-[var(--yellow-light)] rounded-full
+            hover:bg-[var(--yellow)] hover:text-white transition-colors duration-200 ease-in"
             href="/register"
           >
             Registration
