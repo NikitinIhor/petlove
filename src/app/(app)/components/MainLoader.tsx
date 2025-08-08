@@ -25,7 +25,7 @@ const MainLoader: NextPage = () => {
     if (percent < 100) {
       const stepTimer = setTimeout(() => {
         setPercent((prev) => Math.min(prev + 10, 100));
-      }, 100);
+      }, 70);
 
       return () => clearTimeout(stepTimer);
     } else {
