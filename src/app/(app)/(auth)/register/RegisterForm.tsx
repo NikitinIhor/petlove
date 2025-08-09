@@ -66,7 +66,7 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
         <Form className="flex flex-col gap-4">
           <div>
             <div
-              className={`p-3 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border ${
                 touched.name
                   ? errors.name
                     ? "border-red-500"
@@ -90,7 +90,7 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
 
           <div>
             <div
-              className={`p-3 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border ${
                 touched.email
                   ? errors.email
                     ? "border-red-500"
@@ -114,7 +114,7 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
 
           <div className="relative">
             <div
-              className={`p-3 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border ${
                 touched.password
                   ? errors.password
                     ? "border-red-500"
@@ -163,7 +163,7 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
 
           <div className="relative">
             <div
-              className={`p-3 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border ${
                 touched.confirmPassword
                   ? errors.confirmPassword
                     ? "border-red-500"
@@ -212,14 +212,14 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
 
           <button
             type="submit"
-            className="mb-3 mt-6 uppercase text-[14px] text-white font-bold h-12 w-full 
+            className="uppercase text-[14px] md:text-base text-white font-bold h-12 w-full 
           rounded-[30px] bg-[var(--yellow)] cursor-pointer
           hover:bg-[var(--yellow-light)] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
           >
             Registration
           </button>
           <Link
-            className="text-[12px] flex items-center justify-center gap-1"
+            className="text-[12px] md:text-[14px] flex items-center justify-center gap-1"
             href="/login"
           >
             <p className="text-[#26262680]">Already have an account?</p>

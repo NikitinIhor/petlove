@@ -14,7 +14,7 @@ const MainLoader: NextPage = () => {
   useEffect(() => {
     const logoTimer = setTimeout(() => {
       setShowPercent(true);
-    }, 1000);
+    }, 700);
 
     return () => clearTimeout(logoTimer);
   }, []);

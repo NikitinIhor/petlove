@@ -50,7 +50,7 @@ const LoginForm: NextPage<RegisterFormProps> = () => {
         <Form className="flex flex-col gap-4">
           <div>
             <div
-              className={`p-3 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border ${
                 touched.email
                   ? errors.email
                     ? "border-red-500"
@@ -74,7 +74,7 @@ const LoginForm: NextPage<RegisterFormProps> = () => {
 
           <div className="relative">
             <div
-              className={`p-3 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border ${
                 touched.password
                   ? errors.password
                     ? "border-red-500"

@@ -1,16 +1,17 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { FaUserAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 // import { RiCloseLine } from "react-icons/ri";
 
 interface HeaderProps {}
 
-const Header: NextPage<HeaderProps> = () => {
+const Header2: NextPage<HeaderProps> = () => {
   const isLoggedIn = false;
 
   return (
-    <header className="container">
+    <header className="container bg-yellow-500">
       <div className="flex justify-between items-center pt-8 mb-8 md:px-8">
         <Link
           href="/home"
@@ -21,9 +22,9 @@ const Header: NextPage<HeaderProps> = () => {
           xl:mr-[310px]"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/logo-2.png"
               alt="logo"
-              width={76}
+              width={78}
               height={20}
               priority
               className="object-contain md:w-[105px] md:h-[26px]"
@@ -35,8 +36,8 @@ const Header: NextPage<HeaderProps> = () => {
         <nav className="hidden xl:block">
           <ul className="flex items-center gap-3">
             <li
-              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
-            hover:border-yellow-500 transition-colors duration-200 ease-in"
+              className="flex items-center justify-center px-5 py-4 border text-white border-white rounded-full
+            hover:border-black hover:text-black transition-colors duration-200 ease-in"
             >
               <Link
                 href="/news"
@@ -48,8 +49,8 @@ const Header: NextPage<HeaderProps> = () => {
               </Link>
             </li>
             <li
-              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
-            hover:border-yellow-500 transition-colors duration-200 ease-in"
+              className="flex items-center justify-center px-5 py-4 border text-white border-white rounded-full
+            hover:border-black hover:text-black transition-colors duration-200 ease-in"
             >
               <Link
                 href="/find"
@@ -61,8 +62,8 @@ const Header: NextPage<HeaderProps> = () => {
               </Link>
             </li>
             <li
-              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
-            hover:border-yellow-500 transition-colors duration-200 ease-in"
+              className="flex items-center justify-center px-5 py-4 border text-white border-white rounded-full
+            hover:border-black hover:text-black transition-colors duration-200 ease-in"
             >
               <Link
                 href="/friends"
@@ -76,33 +77,21 @@ const Header: NextPage<HeaderProps> = () => {
           </ul>
         </nav>
 
-        <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
-          <Link
-            className="flex justify-center items-center text-white uppercase
-            w-[119px] h-[50px] bg-[var(--yellow)] rounded-full
-            hover:bg-[var(--yellow-light)] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
-            href="/login"
-          >
-            Log In
-          </Link>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
+            <FaUserAlt color="var(--yellow)" size={20} />
+          </div>
 
-          <Link
-            className="flex justify-center items-center text-[#F6B83D] uppercase
-            w-[149px] h-[50px] bg-[var(--yellow-light)] rounded-full
-            hover:bg-[var(--yellow)] hover:text-white transition-colors duration-200 ease-in"
-            href="/register"
-          >
-            Registration
-          </Link>
+          <span className="hidden md:block text-[20px] text-white">Anna</span>
+
+          <button type="button" className="xl:hidden">
+            <IoMenu size={36} color="white" />
+            {/* <RiCloseLine /> */}
+          </button>
         </div>
-
-        <button type="button" className="xl:hidden">
-          <IoMenu size={36} />
-          {/* <RiCloseLine /> */}
-        </button>
       </div>
     </header>
   );
 };
 
-export default Header;
+export default Header2;
