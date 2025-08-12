@@ -10,8 +10,6 @@ import { RiCloseLine } from "react-icons/ri";
 interface HeaderProps {}
 
 const Header: NextPage<HeaderProps> = () => {
-  const isLoggedIn = false;
-
   const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   useEffect(() => {
@@ -37,10 +35,7 @@ const Header: NextPage<HeaderProps> = () => {
   return (
     <header className="container">
       <div className="flex justify-between items-center pt-8 mb-8 md:px-8">
-        <Link
-          href="/home"
-          className={isLoggedIn ? "" : "cursor-not-allowed pointer-events-none"}
-        >
+        <Link href="/home">
           <div
             className="w-[76px] h-[20px] md:w-[105px] md:h-[26px]
           xl:mr-[310px]"
@@ -59,59 +54,29 @@ const Header: NextPage<HeaderProps> = () => {
 
         <nav className="hidden xl:block">
           <ul className="flex items-center gap-3">
-            <li
-              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
-    "
-            >
-              <Link
-                href="/news"
-                className={
-                  isLoggedIn
-                    ? "hover:border-yellow-500 transition-colors duration-200 ease-in"
-                    : "cursor-not-allowed pointer-events-none"
-                }
+            {["news", "find", "friends"].map((page) => (
+              <li
+                key={page}
+                className="flex items-center justify-center px-5 py-4 border text-black border-gray-500 rounded-full
+              hover:text-yellow-500 hover:bg-white transition-colors duration-200 ease-in"
               >
-                News
-              </Link>
-            </li>
-            <li
-              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
-"
-            >
-              <Link
-                href="/find"
-                className={
-                  isLoggedIn
-                    ? "hover:border-yellow-500 transition-colors duration-200 ease-in"
-                    : "cursor-not-allowed pointer-events-none"
-                }
-              >
-                Find pet
-              </Link>
-            </li>
-            <li
-              className="flex items-center justify-center px-5 py-4 border border-gray-500 rounded-full
-           "
-            >
-              <Link
-                href="/friends"
-                className={
-                  isLoggedIn
-                    ? "hover:border-yellow-500 transition-colors duration-200 ease-in"
-                    : "cursor-not-allowed pointer-events-none"
-                }
-              >
-                Our friends
-              </Link>
-            </li>
+                <Link href={`/${page}`}>
+                  {page === "find"
+                    ? "Find pet"
+                    : page === "friends"
+                    ? "Our friends"
+                    : "News"}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
           <Link
             className="flex justify-center items-center text-white uppercase
-            w-[119px] h-[50px] bg-[var(--yellow)] rounded-full
-            hover:bg-[var(--yellow-light)] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
+            w-[119px] h-[50px] bg-[#F6B83D] rounded-full
+            hover:bg-[#F9B020] transition-colors duration-200 ease-in"
             href="/login"
           >
             Log In
@@ -119,8 +84,8 @@ const Header: NextPage<HeaderProps> = () => {
 
           <Link
             className="flex justify-center items-center text-[#F6B83D] uppercase
-            w-[149px] h-[50px] bg-[var(--yellow-light)] rounded-full
-            hover:bg-[var(--yellow)] hover:text-white transition-colors duration-200 ease-in"
+            w-[149px] h-[50px] bg-[#FFF4DF] rounded-full
+            hover:bg-[#FBE7C1] transition-colors duration-200 ease-in"
             href="/register"
           >
             Registration
@@ -152,53 +117,23 @@ const Header: NextPage<HeaderProps> = () => {
             <RiCloseLine size={36} color="white" />
           </button>
 
-          <nav className="flex-grow overflow-y-auto pt-[80px] ml-auto mr-auto">
-            <ul className="flex flex-col gap-4">
-              <li
-                className="w-[119px] h-12 flex justify-center items-center border text-white
-                 border-white rounded-full cursor-pointer"
-              >
-                <Link
-                  href="/news"
-                  className={
-                    isLoggedIn
-                      ? "hover:text-yellow-500 hover:bg-white transition-colors duration-200 ease-in"
-                      : "cursor-not-allowed pointer-events-none"
-                  }
+          <nav className="hidden xl:block xl:mr-[100px]">
+            <ul className="flex items-center gap-3">
+              {["news", "find", "friends"].map((page) => (
+                <li
+                  key={page}
+                  className="flex items-center justify-center px-5 py-4 border text-white border-white rounded-full
+              hover:text-yellow-500 hover:bg-white transition-colors duration-200 ease-in"
                 >
-                  News
-                </Link>
-              </li>
-              <li
-                className="w-[119px] h-12 flex justify-center items-center border text-white
-                 border-white rounded-full cursor-pointer"
-              >
-                <Link
-                  href="/find"
-                  className={
-                    isLoggedIn
-                      ? "hover:text-yellow-500 hover:bg-white transition-colors duration-200 ease-in"
-                      : "cursor-not-allowed pointer-events-none"
-                  }
-                >
-                  Find pet
-                </Link>
-              </li>
-              <li
-                className="w-[119px] h-12 flex justify-center items-center border text-white
-                 border-white rounded-full cursor-pointer"
-              >
-                <Link
-                  href="/friends"
-                  className={
-                    isLoggedIn
-                      ? "hover:text-yellow-500 hover:bg-white transition-colors duration-200 ease-in"
-                      : "cursor-not-allowed pointer-events-none"
-                  }
-                >
-                  Our friends
-                </Link>
-              </li>
+                  <Link href={`/${page}`}>
+                    {page === "find"
+                      ? "Find pet"
+                      : page === "friends"
+                      ? "Our friends"
+                      : "News"}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 

@@ -1,12 +1,12 @@
 "use client";
 
+import { useAuthStore } from "@/app/zustand/authStore";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
-import { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
-
-interface RegisterFormProps {}
 
 interface InitialValuesProps {
   name: string;
@@ -37,23 +37,37 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const handleSubmit = (
-  values: InitialValuesProps,
-  actions: FormikHelpers<InitialValuesProps>
-) => {
-  actions.resetForm();
-};
+const RegisterForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-const RegisterForm: NextPage<RegisterFormProps> = () => {
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState<boolean>(false);
+  const { signup } = useAuthStore();
 
-  const handleShowPassword = () => {
-    setShowPassword((prev) => !prev);
-  };
-  const handleShowConfirmPassword = () => {
-    setShowConfirmPassword((prev) => !prev);
+  const router = useRouter();
+
+  const handleSubmit = async (
+    values: InitialValuesProps,
+    actions: FormikHelpers<InitialValuesProps>
+  ) => {
+    try {
+      await signup(values.name, values.email, values.password);
+
+      actions.resetForm();
+
+      router.push("/home");
+
+      toast.success(`${values.name} was successfully registered`, {
+        duration: 4000,
+        position: "top-right",
+      });
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message, {
+        duration: 4000,
+        position: "top-right",
+      });
+    }
   };
 
   return (
@@ -130,28 +144,16 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
               />
               <button
                 type="button"
-                onClick={handleShowPassword}
+                onClick={() => setShowPassword((prev) => !prev)}
                 className="absolute right-3"
               >
-                {showPassword ? (
-                  <svg
-                    width={18}
-                    height={18}
-                    fill="white"
-                    stroke="var(--yellow)"
-                  >
-                    <use href="/icons/sprite.svg#icon-eye" />
-                  </svg>
-                ) : (
-                  <svg
-                    width={18}
-                    height={18}
-                    fill="white"
-                    stroke="var(--yellow)"
-                  >
-                    <use href="/icons/sprite.svg#icon-eye-off" />
-                  </svg>
-                )}
+                <svg width={18} height={18} fill="white" stroke="var(--yellow)">
+                  <use
+                    href={`/icons/sprite.svg#icon-${
+                      showPassword ? "eye" : "eye-off"
+                    }`}
+                  />
+                </svg>
               </button>
             </div>
             <ErrorMessage
@@ -179,28 +181,16 @@ const RegisterForm: NextPage<RegisterFormProps> = () => {
               />
               <button
                 type="button"
-                onClick={handleShowConfirmPassword}
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
                 className="absolute right-3"
               >
-                {showConfirmPassword ? (
-                  <svg
-                    width={18}
-                    height={18}
-                    fill="white"
-                    stroke="var(--yellow)"
-                  >
-                    <use href="/icons/sprite.svg#icon-eye" />
-                  </svg>
-                ) : (
-                  <svg
-                    width={18}
-                    height={18}
-                    fill="white"
-                    stroke="var(--yellow)"
-                  >
-                    <use href="/icons/sprite.svg#icon-eye-off" />
-                  </svg>
-                )}
+                <svg width={18} height={18} fill="white" stroke="var(--yellow)">
+                  <use
+                    href={`/icons/sprite.svg#icon-${
+                      showConfirmPassword ? "eye" : "eye-off"
+                    }`}
+                  />
+                </svg>
               </button>
             </div>
             <ErrorMessage
