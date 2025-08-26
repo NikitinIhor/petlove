@@ -24,13 +24,13 @@ const MainLoader: NextPage = () => {
 
     if (percent < 100) {
       const stepTimer = setTimeout(() => {
-        setPercent((prev) => Math.min(prev + 10, 100));
-      }, 70);
+        setPercent((prev) => Math.min(prev + 1, 100));
+      }, 10);
 
       return () => clearTimeout(stepTimer);
     } else {
       const redirectTimer = setTimeout(() => {
-        router.push("/register");
+        router.push("/home");
       }, 200);
 
       return () => clearTimeout(redirectTimer);

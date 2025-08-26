@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuthStore } from "@/app/zustand/authStore";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -9,8 +8,8 @@ import { IoMenu } from "react-icons/io5";
 import { RiCloseLine } from "react-icons/ri";
 
 const Header2 = () => {
-  const { user } = useAuthStore();
   const [openMenu, setOpenMenu] = useState(false);
+  const isLoggedIn = false;
 
   useEffect(() => {
     document.body.style.overflow = openMenu ? "hidden" : "";
@@ -23,7 +22,7 @@ const Header2 = () => {
     <header className="container bg-yellow-500 rounded-tl-[30px] rounded-tr-[30px] md:rounded-tl-[60px] md:rounded-tr-[60px]">
       <div className="flex justify-between items-center pt-5 pb-[60px] md:pb-[120px]">
         <Link href="/home">
-          <div className="w-[76px] h-[20px] md:w-[105px] md:h-[26px] xl:mr-[310px]">
+          <div className="w-[76px] h-[20px] md:w-[105px] md:h-[26px]">
             <Image
               src="/images/logo-2.png"
               alt="logo"
@@ -41,7 +40,7 @@ const Header2 = () => {
             {["news", "find", "friends"].map((page) => (
               <li
                 key={page}
-                className="flex items-center justify-center px-5 py-4 border text-white border-white rounded-full
+                className="flex items-center justify-center px-5 py-4 cursor-pointer border text-white border-white rounded-full
                hover:bg-[#FFF4DF] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
               >
                 <Link href={`/${page}`}>
@@ -57,12 +56,17 @@ const Header2 = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
-            <FaUserAlt color="var(--yellow)" size={20} />
-          </div>
-          <span className="hidden md:block text-[20px] text-white">
-            {user!.name}
-          </span>
+          {isLoggedIn && (
+            <>
+              <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
+                <FaUserAlt color="var(--yellow)" size={20} />
+              </div>
+
+              <span className="hidden md:block text-[20px] text-white">
+                aaaa
+              </span>
+            </>
+          )}
           <button
             onClick={() => setOpenMenu(true)}
             type="button"
@@ -70,6 +74,38 @@ const Header2 = () => {
           >
             <IoMenu size={36} color="white" />
           </button>
+        </div>
+
+        <div className="hidden xl:block">
+          {!isLoggedIn ? (
+            <div className="flex justify-center gap-2 items-center">
+              <Link
+                className="flex justify-center items-center text-white uppercase  w-[120px] px-5 py-4 border border-white rounded-full
+                cursor-pointer
+                hover:bg-[#FFF4DF] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
+                href="/login"
+              >
+                Log In
+              </Link>
+              <Link
+                className="flex justify-center items-center text-[#F6B83D] uppercase w-[150px] px-5 py-4 bg-[var(--yellow-light)] rounded-full
+                cursor-pointer
+                 hover:bg-[#FBE7C1] hover:text-[Registration] transition-colors duration-200 ease-in"
+                href="/register"
+              >
+                Registration
+              </Link>
+            </div>
+          ) : (
+            <Link
+              className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-[150px] px-5 py-4 bg-[var(--yellow-light)] rounded-full
+              cursor-pointer
+                hover:bg-[#FBE7C1] hover:text-[Registration] transition-colors duration-200 ease-in"
+              href="/register"
+            >
+              Log out
+            </Link>
+          )}
         </div>
       </div>
 
@@ -107,20 +143,29 @@ const Header2 = () => {
             </ul>
           </nav>
 
-          <div className="px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-2 items-center border-t border-gray-300 bg-white">
+          {!isLoggedIn ? (
+            <div className="px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-2 items-center border-t border-gray-300 bg-white">
+              <Link
+                className="flex justify-center items-center text-white uppercase w-full md:w-[120px] h-10 bg-[var(--yellow)] rounded-full"
+                href="/login"
+              >
+                Log In
+              </Link>
+              <Link
+                className="flex justify-center items-center text-[#F6B83D] uppercase w-full md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+                href="/register"
+              >
+                Registration
+              </Link>
+            </div>
+          ) : (
             <Link
-              className="flex justify-center items-center text-white uppercase w-full md:w-[120px] h-10 bg-[var(--yellow)] rounded-full"
-              href="/login"
-            >
-              Log In
-            </Link>
-            <Link
-              className="flex justify-center items-center text-[#F6B83D] uppercase w-full md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+              className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
               href="/register"
             >
-              Registration
+              Log out
             </Link>
-          </div>
+          )}
         </div>
       )}
     </header>

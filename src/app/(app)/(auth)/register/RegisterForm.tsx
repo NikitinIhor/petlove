@@ -1,9 +1,7 @@
 "use client";
 
-import { useAuthStore } from "@/app/zustand/authStore";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
@@ -41,20 +39,18 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { signup } = useAuthStore();
-
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleSubmit = async (
     values: InitialValuesProps,
     actions: FormikHelpers<InitialValuesProps>
   ) => {
     try {
-      await signup(values.name, values.email, values.password);
+      // await signup(values.name, values.email, values.password);
 
       actions.resetForm();
 
-      router.push("/home");
+      // router.push("/home");
 
       toast.success(`${values.name} was successfully registered`, {
         duration: 4000,
