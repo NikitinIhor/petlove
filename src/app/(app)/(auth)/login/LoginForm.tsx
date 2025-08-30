@@ -50,12 +50,12 @@ const LoginForm: NextPage<RegisterFormProps> = () => {
         <Form className="flex flex-col gap-4">
           <div>
             <div
-              className={`p-3 md:p-4 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border transition-colors duration-200 ${
                 touched.email
                   ? errors.email
                     ? "border-red-500"
                     : "border-green-500"
-                  : "border-[#26262626]"
+                  : "border-[#26262626] hover:border-[var(--yellow)]"
               }`}
             >
               <Field
@@ -74,12 +74,12 @@ const LoginForm: NextPage<RegisterFormProps> = () => {
 
           <div className="relative">
             <div
-              className={`p-3 md:p-4 rounded-[30px] border ${
+              className={`p-3 md:p-4 rounded-[30px] border transition-colors duration-200 ${
                 touched.password
                   ? errors.password
                     ? "border-red-500"
                     : "border-green-500"
-                  : "border-[#26262626]"
+                  : "border-[#26262626] hover:border-[var(--yellow)]"
               }`}
             >
               <Field
@@ -125,7 +125,7 @@ const LoginForm: NextPage<RegisterFormProps> = () => {
             type="submit"
             className="mb-3 mt-6 uppercase text-[14px] text-white font-bold h-12 w-full 
           rounded-[30px] bg-[var(--yellow)] cursor-pointer
-          hover:bg-[var(--yellow-light)] hover:text-[#F6B83D] transition-colors duration-200 ease-in"
+          hover:bg-[#F9B020] transition-colors duration-200 ease-in"
           >
             Log In
           </button>

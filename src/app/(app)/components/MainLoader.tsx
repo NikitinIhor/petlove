@@ -14,7 +14,7 @@ const MainLoader: NextPage = () => {
   useEffect(() => {
     const logoTimer = setTimeout(() => {
       setShowPercent(true);
-    }, 700);
+    }, 500);
 
     return () => clearTimeout(logoTimer);
   }, []);
@@ -25,7 +25,7 @@ const MainLoader: NextPage = () => {
     if (percent < 100) {
       const stepTimer = setTimeout(() => {
         setPercent((prev) => Math.min(prev + 1, 100));
-      }, 10);
+      }, 5);
 
       return () => clearTimeout(stepTimer);
     } else {

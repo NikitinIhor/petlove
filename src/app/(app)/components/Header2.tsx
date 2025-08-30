@@ -126,12 +126,7 @@ const Header2 = () => {
                   key={page}
                   className="w-[119px] h-12 flex justify-center items-center border text-black border-gray-400 rounded-full cursor-pointer hover:border-yellow-500 transition-colors duration-200 ease-in"
                 >
-                  <Link
-                    href={`/${page}`}
-                    className={
-                      isLoggedIn ? "" : "cursor-not-allowed pointer-events-none"
-                    }
-                  >
+                  <Link href={`/${page}`}>
                     {page === "find"
                       ? "Find pet"
                       : page === "friends"

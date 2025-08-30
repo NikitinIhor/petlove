@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import "./globals.css";
+import { store } from "./redux/store";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -26,8 +29,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} antialiased`}>
-        <Toaster />
-        {children}
+        <Provider store={store}>
+          <PersistGate loading={null}>
+            <Toaster />
+            {children}
+          </PersistGate>
+        </Provider>
       </body>
     </html>
   );
