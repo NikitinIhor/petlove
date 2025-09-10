@@ -1,13 +1,22 @@
 "use client";
 
 import { getNews } from "@/app/redux/news/ops";
-import { selectError, selectLoading, selectNews } from "@/app/redux/news/slice";
+import {
+  selectCurrentPage,
+  selectError,
+  selectLoading,
+  selectNews,
+  selectSearchValue,
+  setCurrentPage,
+} from "@/app/redux/news/slice";
 import { AppDispatch } from "@/app/redux/store";
 import { NextPage } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
+import NewsList from "../components/News/NewsList";
+import NewsSearch from "../components/News/NewsSearch";
 
 interface newsProps {}
 
@@ -15,12 +24,22 @@ const news: NextPage<newsProps> = () => {
   const news = useSelector(selectNews);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const searchValue = useSelector(selectSearchValue);
+  const currentPage = useSelector(selectCurrentPage);
 
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getNews(1));
-  }, [dispatch]);
+    dispatch(setCurrentPage(1));
+  }, [searchValue, dispatch]);
+
+  useEffect(() => {
+    dispatch(getNews({ searchValue }));
+  }, [searchValue, currentPage, dispatch]);
+
+  const handleChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
+  };
 
   useEffect(() => {
     if (error) {
@@ -34,14 +53,13 @@ const news: NextPage<newsProps> = () => {
   return (
     <div className="container">
       {loading && <NextTopLoader />}
-      <h2>News</h2>
-      <ul>
-        {news.map((item) => (
-          <li key={item.id}>
-            <h3>{item.title}</h3>
-          </li>
-        ))}
-      </ul>
+      <div className="flex flex-col gap-5 mb-6 md:flex-row md:items-center md:justify-between md:mb-11">
+        <h2 className="text-[28px] font-extrabold md:text-[54px]">News</h2>
+
+        <NewsSearch />
+      </div>
+
+      <NewsList />
     </div>
   );
 };

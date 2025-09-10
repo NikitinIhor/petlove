@@ -2,8 +2,8 @@ import axios from "axios";
 
 export const handleThunkError = (
   error: unknown,
-  thunkAPI: { rejectWithValue: (value: string) => unknown }
-) => {
+  thunkAPI: { rejectWithValue: (value: string) => any }
+): ReturnType<typeof thunkAPI.rejectWithValue> => {
   if (axios.isAxiosError(error) && error.response?.data) {
     const message =
       typeof error.response.data === "string"
@@ -18,6 +18,7 @@ export const handleThunkError = (
 
   return thunkAPI.rejectWithValue("Unknown error");
 };
+
 // ---------------------------------------------------------------------------------------- URL
 export const URL = process.env.NEXT_PUBLIC_API_URL;
 

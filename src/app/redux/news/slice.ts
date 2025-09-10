@@ -63,5 +63,7 @@ export const { setCurrentPage, setSearchValue, resetSearchValue } =
 export const selectLoading = (state: RootState) => state.news.loading;
 export const selectError = (state: RootState) => state.news.error;
 export const selectNews = (state: RootState) => state.news.news;
+export const selectSearchValue = (state: RootState) => state.news.searchValue;
+export const selectCurrentPage = (state: RootState) => state.news.currentPage;
 
 export default newsSlice.reducer;
