@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
-import { Provider } from "react-redux";
 import "./globals.css";
-import { store } from "./redux/store";
+import ReduxProviderWrapper from "./redux/ReduxProviderWrapper";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -29,13 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} antialiased`}>
-        <Provider store={store}>
+        <ReduxProviderWrapper>
           {/* <PersistGate loading={null}> */}
           <NextTopLoader />
           <Toaster />
           {children}
           {/* </PersistGate> */}
-        </Provider>
+        </ReduxProviderWrapper>
       </body>
     </html>
   );
