@@ -5,8 +5,8 @@ import {
   selectCurrentPage,
   selectError,
   selectLoading,
-  selectNews,
   selectSearchValue,
+  selectTotalPages,
   setCurrentPage,
 } from "@/app/redux/news/slice";
 import { AppDispatch } from "@/app/redux/store";
@@ -17,15 +17,16 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import NewsList from "../components/News/NewsList";
 import NewsSearch from "../components/News/NewsSearch";
+import Pagination from "../components/News/Pagination";
 
 interface newsProps {}
 
 const news: NextPage<newsProps> = () => {
-  const news = useSelector(selectNews);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
   const searchValue = useSelector(selectSearchValue);
   const currentPage = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -60,6 +61,12 @@ const news: NextPage<newsProps> = () => {
       </div>
 
       <NewsList />
+
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handleChangePage}
+      />
     </div>
   );
 };

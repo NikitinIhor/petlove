@@ -65,5 +65,6 @@ export const selectError = (state: RootState) => state.news.error;
 export const selectNews = (state: RootState) => state.news.news;
 export const selectSearchValue = (state: RootState) => state.news.searchValue;
 export const selectCurrentPage = (state: RootState) => state.news.currentPage;
+export const selectTotalPages = (state: RootState) => state.news.totalPages;
 
 export default newsSlice.reducer;
