@@ -37,7 +37,8 @@ const NewsSearch: NextPage<NewsSearchProps> = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center justify-between p-3 rounded-full border border-gray-500"
+      className="flex items-center justify-between p-3 rounded-full border border-gray-500
+      focus-within:border-yellow-500 transition-colors duration-200 bg-white shadow-sm"
     >
       <input
         type="text"
@@ -46,6 +47,7 @@ const NewsSearch: NextPage<NewsSearchProps> = () => {
         placeholder="Search"
         value={fieldValue}
         onChange={handleChange}
+        className="flex-1 bg-transparent outline-none text-gray-800 placeholder-gray-400"
       />
 
       <button type="button" onClick={handleReset}>

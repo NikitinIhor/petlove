@@ -32,7 +32,7 @@ const Header: NextPage<HeaderProps> = () => {
 
   return (
     <header className="container">
-      <div className="flex justify-between items-center pt-8 mb-8 md:px-8">
+      <div className="flex justify-between items-center pt-8 mb-[60px] md:mb-[96px] xl:mb-[107px] md:px-8">
         <Link href="/home">
           <div
             className="w-[76px] h-[20px] md:w-[105px] md:h-[26px]

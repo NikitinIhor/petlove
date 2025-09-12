@@ -11,7 +11,7 @@ interface newsState {
   searchValue: string;
   loading: boolean;
   error: string | null;
-  news: News[];
+  news: News[] | null;
 }
 
 const initialState: newsState = {
@@ -20,7 +20,7 @@ const initialState: newsState = {
   searchValue: "",
   loading: false,
   error: null,
-  news: [],
+  news: null,
 };
 
 const newsSlice = createSlice({
