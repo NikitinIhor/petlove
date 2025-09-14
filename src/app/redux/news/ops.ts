@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { NewsResponse } from "../types";
+
 import { handleThunkError, URL } from "../utils";
 import { RootState } from "./slice";
+import { NewsResponse } from "./types";
 
 axios.defaults.baseURL = URL;
 

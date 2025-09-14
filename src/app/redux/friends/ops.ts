@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { FriendsResponse } from "../types";
+
 import { handleThunkError, URL } from "../utils";
+import { FriendsResponse } from "./types";
 
 axios.defaults.baseURL = URL;
 

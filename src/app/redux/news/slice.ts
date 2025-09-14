@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { store } from "../store";
-import { News } from "../types";
+
 import { getNews } from "./ops";
+import { News } from "./types";
 
 export type RootState = ReturnType<typeof store.getState>;
 

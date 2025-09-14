@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { store } from "../store";
-import { FriendsItem } from "../types";
+
 import { getFriends } from "./ops";
+import { FriendsItem } from "./types";
 
 export type RootState = ReturnType<typeof store.getState>;
 
