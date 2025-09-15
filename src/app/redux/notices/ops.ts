@@ -40,8 +40,8 @@ export const getNotices = createAsyncThunk<
       queryParams.byPopularity = !byPopularity;
     if (typeof byPrice === "boolean") queryParams.byPrice = !byPrice;
 
-    const response = await axios.get("/notices", { params: queryParams });
-    return response.data;
+    const res = await axios.get("/notices", { params: queryParams });
+    return res.data;
   } catch (error) {
     return handleThunkError(error, thunkAPI);
   }
