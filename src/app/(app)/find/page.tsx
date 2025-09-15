@@ -1,4 +1,6 @@
 import { NextPage } from "next";
+import NoticesFilters from "../components/Find/NoticesFilters";
+import NoticesFiltersResetButton from "../components/Find/NoticesFiltersResetButton";
 
 interface findProps {}
 
@@ -11,6 +13,10 @@ const find: NextPage<findProps> = () => {
       >
         Find your favorite pet
       </h2>
+
+      <NoticesFiltersResetButton />
+
+      <NoticesFilters />
     </div>
   );
 };
