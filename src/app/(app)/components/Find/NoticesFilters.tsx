@@ -8,7 +8,7 @@ interface NoticesFiltersProps {}
 
 const NoticesFilters: NextPage<NoticesFiltersProps> = () => {
   return (
-    <div>
+    <div className="p-4 rounded-[30px] bg-[rgba(255,244,223,1)] mb-10">
       <div>
         <NoticesFiltersSearch />
 
