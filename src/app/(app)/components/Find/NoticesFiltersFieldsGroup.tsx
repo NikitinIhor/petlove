@@ -57,26 +57,30 @@ const NoticesFiltersFieldsGroup: NextPage<
   };
 
   return (
-    <>
-      <div>
-        <NoticesFiltersField
-          fieldPlaceholder={"Category"}
-          fieldName={"category"}
-          fieldValue={categoryItem}
-          selectOptions={categoriesList}
-          handleChange={handleChangeCategories}
-          className={"categoriesField"}
-          classNameGeneral={"field"}
-        />
-        <NoticesFiltersField
-          fieldPlaceholder={"By gender"}
-          fieldName={"sex"}
-          fieldValue={sexItem}
-          selectOptions={sexList}
-          handleChange={handleChangeSex}
-          className={"genderField"}
-          classNameGeneral={"field"}
-        />
+    <div className="flex flex-col xl:flex-row gap-3 mb-3">
+      <div className="flex gap-3">
+        <div className="flex-1">
+          <NoticesFiltersField
+            fieldPlaceholder={"Category"}
+            fieldName={"category"}
+            fieldValue={categoryItem}
+            selectOptions={categoriesList}
+            handleChange={handleChangeCategories}
+            className={"categoriesField"}
+            classNameGeneral={"field"}
+          />
+        </div>
+        <div className="flex-1">
+          <NoticesFiltersField
+            fieldPlaceholder={"By gender"}
+            fieldName={"sex"}
+            fieldValue={sexItem}
+            selectOptions={sexList}
+            handleChange={handleChangeSex}
+            className={"genderField"}
+            classNameGeneral={"field"}
+          />
+        </div>
       </div>
 
       <NoticesFiltersField
@@ -88,7 +92,7 @@ const NoticesFiltersFieldsGroup: NextPage<
         className={"speciesField"}
         classNameGeneral={"field"}
       />
-    </>
+    </div>
   );
 };
 

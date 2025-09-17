@@ -2,7 +2,6 @@ import { selectLoading, selectNotices } from "@/app/redux/notices/slice";
 import { NextPage } from "next";
 import { useSelector } from "react-redux";
 import Loader from "../Loader";
-import NoticesItem from "./NoticesItem";
 
 interface NoticesListProps {}
 
@@ -26,7 +25,7 @@ const NoticesList: NextPage<NoticesListProps> = () => {
     <ul>
       {noticesItems.map((noticesItem) => (
         <li key={noticesItem._id}>
-          <NoticesItem noticeData={noticesItem} />
+          {/* <NoticesItem noticeData={noticesItem} /> */}
         </li>
       ))}
     </ul>

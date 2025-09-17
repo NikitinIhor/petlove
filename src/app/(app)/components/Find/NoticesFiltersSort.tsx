@@ -36,23 +36,49 @@ const NoticesFiltersSort: NextPage<NoticesFiltersSortProps> = () => {
     }
   };
   return (
-    <div className="flex justify-between">
-      <button onClick={() => handlePopularityClick(true)}>
-        <span>Popular</span>
-        {byPopularity === true && <div>X</div>}
-      </button>
-      <button onClick={() => handlePopularityClick(false)}>
-        <span>Unpopular</span>
-        {byPopularity === false && <div>X</div>}
+    <div className="flex flex-wrap gap-3">
+      <button
+        onClick={() => handlePopularityClick(true)}
+        className={`p-3 rounded-full text-sm border ${
+          byPopularity === true
+            ? "bg-yellow-400 text-white border-yellow-400"
+            : "bg-white text-gray-700 border-gray-300 hover:border-yellow-400"
+        }`}
+      >
+        Popular
       </button>
 
-      <button onClick={() => handlePriceClick(true)}>
-        <span>Expensive</span>
-        {byPrice === true && <div>X</div>}
+      <button
+        onClick={() => handlePopularityClick(false)}
+        className={`px-4 py-2 rounded-full text-sm border ${
+          byPopularity === false
+            ? "bg-yellow-400 text-white border-yellow-400"
+            : "bg-white text-gray-700 border-gray-300 hover:border-yellow-400"
+        }`}
+      >
+        Unpopular
       </button>
-      <button onClick={() => handlePriceClick(false)}>
-        <span>Cheap</span>
-        {byPrice === false && <div>X</div>}
+
+      <button
+        onClick={() => handlePriceClick(true)}
+        className={`px-4 py-2 rounded-full text-sm border ${
+          byPrice === true
+            ? "bg-yellow-400 text-white border-yellow-400"
+            : "bg-white text-gray-700 border-gray-300 hover:border-yellow-400"
+        }`}
+      >
+        Expensive
+      </button>
+
+      <button
+        onClick={() => handlePriceClick(false)}
+        className={`px-4 py-2 rounded-full text-sm border ${
+          byPrice === false
+            ? "bg-yellow-400 text-white border-yellow-400"
+            : "bg-white text-gray-700 border-gray-300 hover:border-yellow-400"
+        }`}
+      >
+        Cheap
       </button>
     </div>
   );

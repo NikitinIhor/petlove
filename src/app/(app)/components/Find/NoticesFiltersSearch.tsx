@@ -49,6 +49,7 @@ const NoticesFiltersSearch: NextPage<NoticesFiltersSearchProps> = () => {
         placeholder="Search"
         value={fieldValue}
         onChange={handleChange}
+        className="placeholder:text-black"
       />
     </SearchForm>
   );

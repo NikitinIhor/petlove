@@ -20,19 +20,21 @@ const SearchForm: NextPage<SearchFormProps> = ({
   fieldValue,
   setFieldValue,
   valueFromStore,
-  onReset,
   onSubmit,
   light = false,
   inputClassName = "",
 }) => {
   return (
-    <form onSubmit={onSubmit} className={`search-form ${light ? "light" : ""}`}>
+    <form
+      onSubmit={onSubmit}
+      className={`relative w-full xl:w-[265px] rounded-[30px] bg-white p-3 flex items-center shadow-sm mb-3`}
+    >
       {children}
-      <button type="button" onClick={onReset}>
-        X
-      </button>
-      <button type="submit">
-        <IoSearch size={24} />
+      <button
+        type="submit"
+        className="absolute right-4 text-gray-600 placeholder:text-black"
+      >
+        <IoSearch size={22} />
       </button>
     </form>
   );

@@ -8,8 +8,8 @@ interface NoticesFiltersProps {}
 
 const NoticesFilters: NextPage<NoticesFiltersProps> = () => {
   return (
-    <div className="p-4 rounded-[30px] bg-[rgba(255,244,223,1)] mb-10">
-      <div>
+    <section className="p-4 rounded-[30px] bg-[rgba(255,244,223,1)] xl-10 md:p-10 mb-10">
+      <div className="xl:flex gap-4 items-center xl:mb-5">
         <NoticesFiltersSearch />
 
         <NoticesFiltersFieldsGroup />
@@ -20,7 +20,7 @@ const NoticesFilters: NextPage<NoticesFiltersProps> = () => {
       <div>
         <NoticesFiltersSort />
       </div>
-    </div>
+    </section>
   );
 };
 

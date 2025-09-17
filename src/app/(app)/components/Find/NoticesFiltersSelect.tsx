@@ -77,6 +77,8 @@ const NoticesFiltersSelect: NextPage<NoticesFiltersSelectProps> = () => {
       return <FormatOptionLabel label={data.label} searchValue={searchValue} />;
     };
 
+  const DropdownIndicator = () => null;
+
   return (
     <SearchForm
       valueFromStore={locationId}
@@ -100,6 +102,50 @@ const NoticesFiltersSelect: NextPage<NoticesFiltersSelectProps> = () => {
         onFocus={() => setMenuOpen(true)}
         onBlur={() => setMenuOpen(false)}
         formatOptionLabel={getFormatOptionLabel(fieldValue)}
+        className="w-full"
+        components={{ DropdownIndicator, IndicatorSeparator: () => null }}
+        styles={{
+          control: (base) => ({
+            ...base,
+            border: "none",
+            boxShadow: "none",
+            backgroundColor: "white",
+            padding: 0,
+            minHeight: "auto",
+          }),
+          input: (base) => ({
+            ...base,
+            color: "black",
+            outline: "none",
+            padding: 0,
+            margin: 0,
+          }),
+          placeholder: (base) => ({
+            ...base,
+            color: "#888",
+          }),
+          menu: (base) => ({
+            ...base,
+            boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          }),
+          option: (base, { isFocused, isSelected }) => ({
+            ...base,
+            backgroundColor: isSelected
+              ? "#FFD966"
+              : isFocused
+              ? "#FFF2B3"
+              : "white",
+            color: "black",
+            cursor: "pointer",
+          }),
+          dropdownIndicator: (base) => ({
+            ...base,
+            color: "#555",
+
+            "&:hover": { color: "#222" },
+          }),
+          indicatorSeparator: () => ({ display: "none" }),
+        }}
       />
     </SearchForm>
   );

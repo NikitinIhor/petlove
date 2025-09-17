@@ -82,8 +82,8 @@ const Header: NextPage<HeaderProps> = () => {
         <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
           <Link
             className="flex justify-center items-center text-white uppercase
-            w-[119px] h-[50px] bg-[#F6B83D] rounded-full
-            hover:bg-[#F9B020] transition-colors duration-200 ease-in"
+              w-[119px] h-[50px] bg-[#F6B83D] rounded-full
+              hover:bg-[#F9B020] transition-colors duration-200 ease-in"
             href="/login"
           >
             Log In
