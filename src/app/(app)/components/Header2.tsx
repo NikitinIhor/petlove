@@ -68,7 +68,7 @@ const Header2 = () => {
           </div>
         </Link>
 
-        <nav className="hidden xl:block xl:mr-[100px]">
+        <nav className="hidden xl:flex xl:ml-auto">
           <ul className="flex items-center gap-3">
             {["news", "find", "friends"].map((page) => (
               <li
@@ -88,17 +88,17 @@ const Header2 = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-auto">
           {isLoggedIn && (
-            <>
-              <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
+            <Link href="/profile" className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-[50px] md:h-[50px] bg-white rounded-full flex justify-center items-center">
                 <FaUserAlt color="var(--yellow)" size={20} />
               </div>
 
               <span className="hidden md:block text-[20px] text-white">
                 {userName}
               </span>
-            </>
+            </Link>
           )}
           <button
             onClick={() => setOpenMenu(true)}
@@ -110,7 +110,7 @@ const Header2 = () => {
         </div>
 
         <div className="hidden xl:block">
-          {!isLoggedIn ? (
+          {!isLoggedIn && (
             <div className="flex justify-center gap-2 items-center">
               <Link
                 className="flex justify-center items-center text-white uppercase  w-[120px] px-5 py-4 border border-white rounded-full
@@ -129,16 +129,6 @@ const Header2 = () => {
                 Registration
               </Link>
             </div>
-          ) : (
-            <Link
-              className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-[150px] px-5 py-4 bg-[var(--yellow-light)] rounded-full
-              cursor-pointer
-                hover:bg-[#FBE7C1] hover:text-[Registration] transition-colors duration-200 ease-in"
-              href="/register"
-              onClick={handleLogout}
-            >
-              Log out
-            </Link>
           )}
         </div>
       </div>

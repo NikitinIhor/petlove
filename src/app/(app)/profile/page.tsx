@@ -1,16 +1,32 @@
+"use client";
+
+import { getFullUserInfo } from "@/app/redux/auth/ops";
+import { AppDispatch } from "@/app/redux/store";
 import { NextPage } from "next";
-import PrivateRoute from "../components/PrivateRoute";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
-interface profileProps {}
+import PrivateRoute from "../components/PrivateRoute ";
+import MyNotices from "../components/Profile/MyNotices";
+import UserCard from "../components/Profile/UserCard";
 
-const profile: NextPage<profileProps> = () => {
+interface ProfileProps {}
+
+const Profile: NextPage<ProfileProps> = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getFullUserInfo());
+  }, [dispatch]);
+
   return (
     <PrivateRoute>
-      <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold">Welcome to your profile!</h1>
-      </div>
+      <section>
+        <UserCard />
+        <MyNotices />
+      </section>
     </PrivateRoute>
   );
 };
 
-export default profile;
+export default Profile;

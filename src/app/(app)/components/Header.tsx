@@ -67,10 +67,7 @@ const Header: NextPage<HeaderProps> = () => {
     <header className="container">
       <div className="flex justify-between items-center pt-8 mb-[60px] md:mb-[96px] xl:mb-[107px] md:px-8">
         <Link href="/home">
-          <div
-            className="w-[76px] h-[20px] md:w-[105px] md:h-[26px]
-          xl:mr-[310px]"
-          >
+          <div className="w-[76px] h-[20px] md:w-[105px] md:h-[26px]">
             <Image
               src="/images/logo.png"
               alt="logo"
@@ -83,7 +80,7 @@ const Header: NextPage<HeaderProps> = () => {
           </div>
         </Link>
 
-        <nav className="hidden xl:block">
+        <nav className="hidden xl:flex m-auto">
           <ul className="flex items-center gap-3">
             {pages.map((page) => {
               const isActive =
@@ -114,23 +111,14 @@ const Header: NextPage<HeaderProps> = () => {
 
         <div className="flex items-center gap-3">
           {isLoggedIn && (
-            <>
-              <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
-                <FaUserAlt color="var(--yellow)" size={20} />
-              </div>
-
-              <span className="hidden md:block text-[20px] text-white">
-                {userName}
-              </span>
-            </>
+            <button
+              onClick={() => setOpenMenu(true)}
+              type="button"
+              className="xl:hidden"
+            >
+              <IoMenu size={36} color="white" />
+            </button>
           )}
-          <button
-            onClick={() => setOpenMenu(true)}
-            type="button"
-            className="xl:hidden"
-          >
-            <IoMenu size={36} color="white" />
-          </button>
         </div>
 
         {!isLoggedIn ? (
@@ -154,22 +142,34 @@ const Header: NextPage<HeaderProps> = () => {
             </Link>
           </div>
         ) : (
-          <Link
-            className="hidden xl:flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
-            href="/register"
-            onClick={handleLogout}
-          >
-            Log out
-          </Link>
-        )}
+          <div className="flex items-center gap-2">
+            <Link
+              className="hidden md:flex justify-center items-center text-white uppercase  md:w-[136px] md:h-[50px] bg-[rgba(246,184,61,1)] rounded-full
+               hover:bg-[#F9B020] transition-colors duration-200 ease-in"
+              href="/register"
+              onClick={handleLogout}
+            >
+              Log out
+            </Link>
+            <Link href="/profile" className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-[50px] md:h-[50px] bg-[rgba(255,244,223,1)] rounded-full flex justify-center items-center">
+                <FaUserAlt color="var(--yellow)" size={20} />
+              </div>
 
-        <button
-          onClick={() => setOpenMenu(true)}
-          type="button"
-          className="xl:hidden"
-        >
-          <IoMenu size={36} />
-        </button>
+              <span className="hidden md:block text-[20px] text-black md:text-[20px]">
+                {userName}
+              </span>
+            </Link>
+
+            <button
+              onClick={() => setOpenMenu(true)}
+              type="button"
+              className="xl:hidden"
+            >
+              <IoMenu size={36} />
+            </button>
+          </div>
+        )}
       </div>
 
       {openMenu && (
