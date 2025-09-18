@@ -1,5 +1,13 @@
 import axios from "axios";
 
+export const setAuthHeader = (token: string): void => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+export const clearAuthHeader = (): void => {
+  axios.defaults.headers.common.Authorization = "";
+};
+// -------------------------------------------------------------------------
 export const handleThunkError = (
   error: unknown,
   thunkAPI: { rejectWithValue: (value: string) => any }
