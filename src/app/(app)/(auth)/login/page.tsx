@@ -34,6 +34,7 @@ const login: NextPage<loginProps> = () => {
         <p className="text-sm mb-5 md:text-[18px]">
           Welcome! Please enter your credentials to login to the platform:
         </p>
+
         <LoginForm />
       </div>
     </div>

@@ -1,9 +1,14 @@
 "use client";
 
+import { loginUser } from "@/app/redux/auth/ops";
+import { AppDispatch } from "@/app/redux/store";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import { NextPage } from "next";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 
 interface RegisterFormProps {}
@@ -26,18 +31,39 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const handleSubmit = (
-  values: InitialValuesProps,
-  actions: FormikHelpers<InitialValuesProps>
-) => {
-  actions.resetForm();
-};
-
 const LoginForm: NextPage<RegisterFormProps> = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  const dispatch = useDispatch<AppDispatch>();
+
+  const router = useRouter();
+
   const handleShowPassword = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  const handleSubmit = async (
+    values: InitialValuesProps,
+    actions: FormikHelpers<InitialValuesProps>
+  ) => {
+    try {
+      const result = await dispatch(loginUser(values)).unwrap();
+
+      actions.resetForm();
+
+      toast.success(`${result.name} was successfully logged in`, {
+        duration: 4000,
+      });
+
+      router.push("/profile");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message, {
+        duration: 4000,
+        position: "top-right",
+      });
+    }
   };
 
   return (

@@ -1,15 +1,27 @@
 "use client";
 
+import { logoutUser } from "@/app/redux/auth/ops";
+import { selectIsLoggedIn, selectUserName } from "@/app/redux/auth/slice";
+import { AppDispatch } from "@/app/redux/store";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { FaUserAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { RiCloseLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header2 = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const isLoggedIn = false;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const userName = useSelector(selectUserName);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const router = useRouter();
 
   useEffect(() => {
     document.body.style.overflow = openMenu ? "hidden" : "";
@@ -17,6 +29,27 @@ const Header2 = () => {
       document.body.style.overflow = "";
     };
   }, [openMenu]);
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser());
+      setOpenMenu(false);
+
+      toast.success(`${userName} was successfully logged out`, {
+        duration: 4000,
+        position: "top-right",
+      });
+
+      router.push("/home");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message, {
+        duration: 4000,
+        position: "top-right",
+      });
+    }
+  };
 
   return (
     <header className="container bg-yellow-500 rounded-tl-[30px] rounded-tr-[30px] md:rounded-tl-[60px] md:rounded-tr-[60px]">
@@ -63,7 +96,7 @@ const Header2 = () => {
               </div>
 
               <span className="hidden md:block text-[20px] text-white">
-                aaaa
+                {userName}
               </span>
             </>
           )}
@@ -102,6 +135,7 @@ const Header2 = () => {
               cursor-pointer
                 hover:bg-[#FBE7C1] hover:text-[Registration] transition-colors duration-200 ease-in"
               href="/register"
+              onClick={handleLogout}
             >
               Log out
             </Link>
@@ -157,6 +191,7 @@ const Header2 = () => {
             <Link
               className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
               href="/register"
+              onClick={handleLogout}
             >
               Log out
             </Link>

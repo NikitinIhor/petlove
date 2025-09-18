@@ -1,9 +1,13 @@
 "use client";
 
+import { registerUser } from "@/app/redux/auth/ops";
+import { AppDispatch } from "@/app/redux/store";
 import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 
 interface InitialValuesProps {
@@ -39,23 +43,31 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const router = useRouter();
 
   const handleSubmit = async (
     values: InitialValuesProps,
     actions: FormikHelpers<InitialValuesProps>
   ) => {
     try {
-      // await signup(values.name, values.email, values.password);
+      await dispatch(
+        registerUser({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        })
+      ).unwrap();
 
       actions.resetForm();
-
-      // router.push("/home");
 
       toast.success(`${values.name} was successfully registered`, {
         duration: 4000,
         position: "top-right",
       });
+
+      router.push("/profile");
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Something went wrong";
@@ -141,7 +153,7 @@ const RegisterForm = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3"
+                className="absolute right-3 cursor-pointer"
               >
                 <svg width={18} height={18} fill="white" stroke="var(--yellow)">
                   <use
@@ -178,7 +190,7 @@ const RegisterForm = () => {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword((prev) => !prev)}
-                className="absolute right-3"
+                className="absolute right-3 cursor-pointer"
               >
                 <svg width={18} height={18} fill="white" stroke="var(--yellow)">
                   <use
@@ -199,11 +211,9 @@ const RegisterForm = () => {
           <button
             type="submit"
             className="uppercase text-[14px] md:text-base text-white font-bold h-12 w-full 
-          rounded-[30px] bg-[var(--yellow)] cursor-pointer
-          hover:bg-[#F9B020] transition-colors duration-200 ease-in"
-          >
-            Registration
-          </button>
+    rounded-[30px] bg-[var(--yellow)] cursor-pointer
+    hover:bg-[#F9B020] transition-colors duration-200 ease-in"
+          ></button>
           <Link
             className="text-[12px] md:text-[14px] flex items-center justify-center gap-1"
             href="/login"

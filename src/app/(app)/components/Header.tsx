@@ -1,12 +1,18 @@
 "use client";
 
+import { logoutUser } from "@/app/redux/auth/ops";
+import { selectIsLoggedIn, selectUserName } from "@/app/redux/auth/slice";
+import { AppDispatch } from "@/app/redux/store";
 import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { FaUserAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import { RiCloseLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
 
 interface HeaderProps {}
 
@@ -16,7 +22,13 @@ const Header: NextPage<HeaderProps> = () => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const pathname = usePathname();
 
-  const isLoggedIn = false;
+  const userName = useSelector(selectUserName);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const router = useRouter();
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     if (openMenu) {
@@ -29,6 +41,27 @@ const Header: NextPage<HeaderProps> = () => {
       document.body.style.overflow = "";
     };
   }, [openMenu]);
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser());
+      setOpenMenu(false);
+
+      toast.success(`${userName} was successfully logged out`, {
+        duration: 4000,
+        position: "top-right",
+      });
+
+      router.push("/home");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong";
+      toast.error(message, {
+        duration: 4000,
+        position: "top-right",
+      });
+    }
+  };
 
   return (
     <header className="container">
@@ -79,25 +112,56 @@ const Header: NextPage<HeaderProps> = () => {
           </ul>
         </nav>
 
-        <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
-          <Link
-            className="flex justify-center items-center text-white uppercase
+        <div className="flex items-center gap-3">
+          {isLoggedIn && (
+            <>
+              <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center">
+                <FaUserAlt color="var(--yellow)" size={20} />
+              </div>
+
+              <span className="hidden md:block text-[20px] text-white">
+                {userName}
+              </span>
+            </>
+          )}
+          <button
+            onClick={() => setOpenMenu(true)}
+            type="button"
+            className="xl:hidden"
+          >
+            <IoMenu size={36} color="white" />
+          </button>
+        </div>
+
+        {!isLoggedIn ? (
+          <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
+            <Link
+              className="flex justify-center items-center text-white uppercase
               w-[119px] h-[50px] bg-[#F6B83D] rounded-full
               hover:bg-[#F9B020] transition-colors duration-200 ease-in"
-            href="/login"
-          >
-            Log In
-          </Link>
+              href="/login"
+            >
+              Log In
+            </Link>
 
-          <Link
-            className="flex justify-center items-center text-[#F6B83D] uppercase
+            <Link
+              className="flex justify-center items-center text-[#F6B83D] uppercase
             w-[149px] h-[50px] bg-[#FFF4DF] rounded-full
             hover:bg-[#FBE7C1] transition-colors duration-200 ease-in"
+              href="/register"
+            >
+              Registration
+            </Link>
+          </div>
+        ) : (
+          <Link
+            className="hidden xl:flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
             href="/register"
+            onClick={handleLogout}
           >
-            Registration
+            Log out
           </Link>
-        </div>
+        )}
 
         <button
           onClick={() => setOpenMenu(true)}
@@ -158,7 +222,7 @@ const Header: NextPage<HeaderProps> = () => {
             <Link
               className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
               href="/register"
-              onClick={() => setOpenMenu(false)}
+              onClick={handleLogout}
             >
               Log out
             </Link>

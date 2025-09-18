@@ -31,6 +31,7 @@ const Register: React.FC = () => {
         <p className="text-sm mb-5 md:text-[18px]">
           Thank you for your interest in our platform.
         </p>
+
         <RegisterForm />
       </div>
     </div>
