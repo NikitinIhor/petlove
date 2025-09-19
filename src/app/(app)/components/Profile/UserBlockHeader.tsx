@@ -6,11 +6,11 @@ interface UserBlockHeaderProps {}
 
 const UserBlockHeader: NextPage<UserBlockHeaderProps> = () => {
   return (
-    <div>
-      <div>
+    <div className="flex items-center justify-between mb-10 md:mb-15">
+      <div className="p-3 bg-[var(--yellow)] rounded-[30px] flex items-center gap-1 text-white">
         <span>User</span>
         <div>
-          <FaUserAlt color="var(--yellow)" size={20} />
+          <FaUserAlt size={18} />
         </div>
       </div>
       <EditUserBtn />

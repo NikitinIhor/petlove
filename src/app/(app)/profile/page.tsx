@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import PrivateRoute from "../components/PrivateRoute ";
-import MyNotices from "../components/Profile/MyNotices";
 import UserCard from "../components/Profile/UserCard";
 
 interface ProfileProps {}
@@ -21,9 +20,12 @@ const Profile: NextPage<ProfileProps> = () => {
 
   return (
     <PrivateRoute>
-      <section>
-        <UserCard />
-        <MyNotices />
+      <section className="container">
+        <div className="pb-10 md:pb-[80px]">
+          <div className="md:w-[500px] bg-white px-5 py-10 rounded-[30px] mx-auto">
+            <UserCard />
+          </div>
+        </div>
       </section>
     </PrivateRoute>
   );
