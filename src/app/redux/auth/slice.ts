@@ -250,6 +250,8 @@ export const selectUserAvatar = (state: RootState) => state.auth.user.avatar;
 
 export const selectIsRefreshing = (state: RootState) => state.auth.isRefreshing;
 
+export const { setDefaultAvatar } = authSlice.actions;
+
 export const selectAuthUserPetsNoticesViewed = (state: RootState) =>
   state.auth.userPets.noticesViewed;
 export const selectAuthUserPetsNoticesFavorites = (state: RootState) =>
