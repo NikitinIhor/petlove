@@ -165,7 +165,7 @@ const EditModal: NextPage<EditModalProps> = () => {
 
   return (
     <div>
-      <h3>Edit information</h3>
+      <h3 className="text-[20px] font-extrabold mb-5">Edit information</h3>
 
       <div>
         {!avatarPreview || avatarError ? (
