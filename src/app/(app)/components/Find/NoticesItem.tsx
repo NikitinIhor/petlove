@@ -1,8 +1,11 @@
+"use client";
+
 import { NoticesItem as NoticesItemType } from "@/app/redux/notices/types";
-import { AppDispatch } from "@/app/redux/store";
 import { NextPage } from "next";
-import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../hooks/useModal";
+import { useState } from "react";
+import { MdOutlineStarPurple500 } from "react-icons/md";
+import ModalWrapper from "../ModalWrapper";
+import LearnMoreModal from "./LearnMoreModal";
 
 interface NoticesItemProps {
   noticeData: NoticesItemType;
@@ -10,11 +13,7 @@ interface NoticesItemProps {
   isBtnFunc?: boolean;
 }
 
-const NoticesItem: NextPage<NoticesItemProps> = ({
-  noticeData,
-  variant = "default",
-  isBtnFunc = true,
-}) => {
+const NoticesItem: NextPage<NoticesItemProps> = ({ noticeData }) => {
   const {
     imgURL,
     title,
@@ -26,14 +25,7 @@ const NoticesItem: NextPage<NoticesItemProps> = ({
     category,
     comment,
     price,
-    _id,
   } = noticeData;
-
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoadingCurrentUser = useSelector(selectIsLoadingCurrentUser);
-  const userFavoriteNotices = useSelector(selectAuthUserPetsNoticesFavorites);
-
-  const dispatch = useDispatch<AppDispatch>();
 
   const priceFormatted = typeof price === "number" ? price.toFixed(2) : "0.00";
 
@@ -43,48 +35,66 @@ const NoticesItem: NextPage<NoticesItemProps> = ({
     birthdayFormatted = `${day}.${month}.${year}`;
   }
 
-  const isFavorite = userFavoriteNotices.some(
-    (favorite) => favorite._id === _id
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
+
+  const list = [
+    { label: "Name", value: name },
+    { label: "Birthday", value: birthdayFormatted },
+    { label: "Sex", value: sex },
+    { label: "Species", value: species },
+    { label: "Category", value: category },
+  ];
+
+  return (
+    <article className="p-6 bg-white rounded-[16px] flex flex-col gap-6">
+      <div className="w-[287px] h-[178px]rounded-[16px]">
+        <img src={imgURL} alt={title} width="315" height="178" loading="lazy" />
+      </div>
+
+      <div className="flex justify-between items-center">
+        <h3>{title}</h3>
+        <div className="flex justify-between items-center">
+          <MdOutlineStarPurple500 size={18} color="var(--yellow)" />
+          <span>{popularity}</span>
+        </div>
+      </div>
+
+      <ul className="flex gap-3 items-center justify-between">
+        {list.map((item) => (
+          <li key={item.label} className="flex flex-col gap-1 ">
+            <div className="text-[10px] text-[rgba(38,38,38,0.5)]">
+              {item.label}
+            </div>
+            <div className="text-[12px]">{item.value}</div>
+          </li>
+        ))}
+      </ul>
+
+      <p className="text-[14px]">{comment}</p>
+
+      <p className="font-extrabold">${priceFormatted}</p>
+
+      <div>
+        <button
+          onClick={handleOpenModal}
+          className="text-white rounded-full bg-[var(--yellow)] h-[46px] flex justify-center items-center w-full
+          cursor-pointer
+          hover:bg-[#F9B020] transition-colors duration-200 ease-in"
+        >
+          Learn more
+        </button>
+      </div>
+
+      {openModal && (
+        <ModalWrapper onClose={handleCloseModal}>
+          <LearnMoreModal onClose={handleCloseModal} />
+        </ModalWrapper>
+      )}
+    </article>
   );
-
-  const { openModal, closeModal, isModalOpen } = useModal();
-
-  const handleClickFavorite = async (): Promise<void> => {
-    if (!isLoggedIn) {
-      openModal("attention");
-      return;
-    }
-    try {
-      if (!isFavorite) {
-        await dispatch(addNoticeToFavorites(_id)).unwrap();
-
-        if (userFavoriteNotices.length === 0) {
-          openModal("first-favorite");
-        }
-      } else {
-        await dispatch(removeNoticeFromFavorites(_id)).unwrap();
-      }
-
-      await dispatch(getCurrentUserInfo()).unwrap();
-    } catch (error) {
-      enqueueSnackbar(`Error: ${error}`, { variant: "error" });
-    }
-  };
-
-  const handleClickLearnMore = (): void => {
-    if (!isLoggedIn) {
-      openModal("attention");
-    } else {
-      openModal("notice");
-    }
-  };
-
-  let iconName = isFavorite ? "heart" : "heart-empty";
-  if (variant === "profile") {
-    iconName = "trash";
-  }
-
-  return <div>NoticesItem</div>;
 };
 
 export default NoticesItem;
