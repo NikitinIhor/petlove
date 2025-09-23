@@ -36,7 +36,10 @@ const UserBlockBody: NextPage<UserBlockBodyProps> = () => {
       >
         {!userAvatar ? (
           <div className="flex flex-col gap-2 items-center">
-            <div className="w-[94px] h-[94px] rounded-full bg-[var(--yellow-light)] flex justify-center items-center">
+            <div
+              className="w-[94px] h-[94px] rounded-full bg-[var(--yellow-light)] flex justify-center items-center
+            hover:bg-[rgba(246,184,61,0.5)] transition-colors duration-200 ease-in"
+            >
               <FaUserAlt color="var(--yellow)" size={30} />
             </div>
             <span>Upload photo</span>
@@ -48,6 +51,8 @@ const UserBlockBody: NextPage<UserBlockBodyProps> = () => {
               alt="User avatar"
               width={110}
               height={110}
+              style={{ width: "94px", height: "auto" }}
+              className="rounded-full"
             />
           </span>
         )}
@@ -69,7 +74,7 @@ const UserBlockBody: NextPage<UserBlockBodyProps> = () => {
 
       {openModal && (
         <ModalWrapper onClose={handleCloseModal}>
-          <EditModal />
+          <EditModal onClose={handleCloseModal} />
         </ModalWrapper>
       )}
     </div>

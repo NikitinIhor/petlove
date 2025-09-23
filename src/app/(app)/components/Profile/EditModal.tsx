@@ -21,7 +21,9 @@ import { FaUserAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonUpload from "./ButtonUpload";
 
-interface EditModalProps {}
+interface EditModalProps {
+  onClose: () => void;
+}
 
 interface FormValues {
   name: string;
@@ -30,7 +32,7 @@ interface FormValues {
   phone: string;
 }
 
-const EditModal: NextPage<EditModalProps> = () => {
+const EditModal: NextPage<EditModalProps> = ({ onClose }) => {
   const userAvatar = useSelector(selectUserAvatar);
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
@@ -99,9 +101,9 @@ const EditModal: NextPage<EditModalProps> = () => {
       };
       reader.readAsDataURL(file);
 
-      const CLOUDINARY_URL = import.meta.env.VITE_CLOUDINARY_URL;
-      const CLOUDINARY_UPLOAD_PRESET = import.meta.env
-        .VITE_CLOUDINARY_UPLOAD_PRESET;
+      const CLOUDINARY_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
+      const CLOUDINARY_UPLOAD_PRESET =
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
       if (!CLOUDINARY_URL || !CLOUDINARY_UPLOAD_PRESET) {
         throw new Error("Cloudinary configuration is missing");
@@ -127,10 +129,9 @@ const EditModal: NextPage<EditModalProps> = () => {
       setFieldValue("avatar", cloudinaryUrl);
       setAvatarPreview(cloudinaryUrl);
     } catch (error) {
-      error instanceof Error ? error.message : "Failed to upload photo",
-        {
-          variant: "error",
-        };
+      toast.error(
+        error instanceof Error ? error.message : "Failed to upload photo"
+      );
       setAvatarError(true);
     } finally {
       setAvatarUploading(false);
@@ -155,6 +156,8 @@ const EditModal: NextPage<EditModalProps> = () => {
 
     try {
       await dispatch(editUser(userData)).unwrap();
+      toast.success("Profile updated successfully!");
+      onClose?.();
     } catch (error) {
       toast.error(`Update failed: ${error}`, {
         duration: 4000,
@@ -167,9 +170,11 @@ const EditModal: NextPage<EditModalProps> = () => {
     <div>
       <h3 className="text-[20px] font-extrabold mb-5">Edit information</h3>
 
-      <div>
+      <div className="flex justify-center mb-5">
         {!avatarPreview || avatarError ? (
-          <FaUserAlt color="var(--yellow)" size={30} />
+          <div className="w-[94px] h-[94px] rounded-full bg-[var(--yellow-light)] flex justify-center items-center mb-5">
+            <FaUserAlt color="var(--yellow)" size={30} />
+          </div>
         ) : (
           <span>
             <Image
@@ -177,6 +182,8 @@ const EditModal: NextPage<EditModalProps> = () => {
               alt="User avatar"
               width={110}
               height={110}
+              style={{ width: "94px", height: "auto" }}
+              className="rounded-full"
             />
           </span>
         )}
@@ -189,9 +196,12 @@ const EditModal: NextPage<EditModalProps> = () => {
       >
         {({ errors, values, setFieldValue, touched }) => (
           <Form>
-            <div>
-              <label htmlFor="avatar">
-                <div>
+            <div className="flex flex-col gap-3 mb-5">
+              <label
+                htmlFor="avatar"
+                className="flex flex-col justify-between gap-2 items-center"
+              >
+                <div className="p-3 md:p-4 rounded-[30px] border border-[var(--yellow)]">
                   <Field
                     type="text"
                     name="avatar"
@@ -224,6 +234,7 @@ const EditModal: NextPage<EditModalProps> = () => {
                   id="name"
                   placeholder="Name"
                   autoComplete="off"
+                  className="w-full p-3 md:p-4 rounded-[30px] border border-[var(--yellow)]"
                 />
                 <ErrorMessage name="name" component="span" />
               </label>
@@ -235,6 +246,7 @@ const EditModal: NextPage<EditModalProps> = () => {
                   id="email"
                   placeholder="name@gmail.com"
                   autoComplete="off"
+                  className="w-full p-3 md:p-4 rounded-[30px] border border-[var(--yellow)]"
                 />
                 <ErrorMessage name="email" component="span" />
               </label>
@@ -246,12 +258,18 @@ const EditModal: NextPage<EditModalProps> = () => {
                   id="phone"
                   placeholder="+380"
                   autoComplete="off"
+                  className="w-full p-3 md:p-4 rounded-[30px] border border-[var(--yellow)]"
                 />
                 <ErrorMessage name="phone" component="span" />
               </label>
             </div>
 
-            <button disabled={isLoading || avatarUploading}>
+            <button
+              type="submit"
+              disabled={isLoading || avatarUploading}
+              className="cursor-pointer w-full h-[42px] rounded-[30px] bg-[var(--yellow)] text-white
+               hover:bg-[#F9B020] transition-colors duration-200 ease-in"
+            >
               {isLoading ? "Saving..." : "Save"}
             </button>
           </Form>

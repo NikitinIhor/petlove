@@ -1,5 +1,5 @@
 import { ComponentProps, useRef } from "react";
-import { FaUserAlt } from "react-icons/fa";
+import { FiDownloadCloud } from "react-icons/fi";
 
 export interface ButtonUploadProps
   extends Omit<
@@ -76,7 +76,7 @@ const ButtonUpload = ({
         accept={accept}
         onChange={handleFileChange}
         disabled={disabled || loading}
-        className="visually-hidden"
+        className="visually-hidden "
         tabIndex={-1}
         {...rest}
       />
@@ -89,9 +89,12 @@ const ButtonUpload = ({
         aria-busy={loading}
         aria-label="Upload photo"
         title={loading ? "Uploading…" : "Upload photo"}
+        className="flex gap-2 items-center text-sm bg-[var(--yellow)] text-white
+        p-3 md:p-4 rounded-[30px] border border-[var(--yellow)] cursor-pointer
+        hover:text-[var(--yellow)] hover:bg-[var(--yellow-light)] transition-colors duration-200 ease-in"
       >
-        <span>{loading ? "Uploading…" : "Upload photo"}</span>
-        <FaUserAlt color="var(--yellow)" size={30} />
+        <span>{loading ? "Uploading…" : "Upload"}</span>
+        <FiDownloadCloud size={20} />
       </button>
     </>
   );

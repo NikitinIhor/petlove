@@ -48,7 +48,8 @@ const UserCard = () => {
       <UserBlock />
 
       <button
-        className="flex justify-center items-center text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+        className="cursor-pointer flex justify-center items-center text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full
+        hover:bg-[#FBE7C1] hover:text-[Registration] transition-colors duration-200 ease-in"
         onClick={handleOpenModal}
       >
         Log out
