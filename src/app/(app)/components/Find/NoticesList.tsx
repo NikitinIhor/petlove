@@ -16,14 +16,17 @@ const NoticesList: NextPage<NoticesListProps> = () => {
 
   if (!noticesItems || noticesItems.length === 0) {
     return (
-      <p className="text-center text-gray-500 text-base md:text-2xl">
+      <p className="text-center text-gray-500 text-base md:text-2xl pb-[80px]">
         No noticesItems found
       </p>
     );
   }
 
   return (
-    <ul className="flex flex-col gap-4">
+    <ul
+      className="grid grid-cols-1 gap-5 pb-[60px]
+    md:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 xl:gap-y-10"
+    >
       {noticesItems.map((noticesItem) => (
         <li key={noticesItem._id}>
           <NoticesItem noticeData={noticesItem} />

@@ -49,13 +49,16 @@ const NoticesItem: NextPage<NoticesItemProps> = ({ noticeData }) => {
   ];
 
   return (
-    <article className="p-6 bg-white rounded-[16px] flex flex-col gap-6">
-      <div className="w-[287px] h-[178px]rounded-[16px]">
+    <article
+      className="p-6 bg-white rounded-[16px] flex flex-col gap-6
+   "
+    >
+      <div className="w-[287px] h-[178px] md:w-[294px] xl:w-[315px] rounded-[16px] overflow-hidden">
         <img src={imgURL} alt={title} width="315" height="178" loading="lazy" />
       </div>
 
       <div className="flex justify-between items-center">
-        <h3>{title}</h3>
+        <h3 className="md:text-[18px]">{title}</h3>
         <div className="flex justify-between items-center">
           <MdOutlineStarPurple500 size={18} color="var(--yellow)" />
           <span>{popularity}</span>
@@ -73,9 +76,9 @@ const NoticesItem: NextPage<NoticesItemProps> = ({ noticeData }) => {
         ))}
       </ul>
 
-      <p className="text-[14px]">{comment}</p>
+      <p className="text-[14px] h-[60px] md:text-[18px] leading-5">{comment}</p>
 
-      <p className="font-extrabold">${priceFormatted}</p>
+      <p className="font-black text-[18px] xl:text-[20px]">${priceFormatted}</p>
 
       <div>
         <button

@@ -1,18 +1,19 @@
 "use client";
 
-import { selectSearchValue, setCurrentPage } from "@/app/redux/news/slice";
 import { getNotices } from "@/app/redux/notices/ops";
 import {
   selectCurrentPage,
   selectError,
   selectLoading,
   selectTotalPages,
+  setCurrentPage,
 } from "@/app/redux/notices/slice";
 import {
   selectByPopularity,
   selectByPrice,
   selectCatecoreyItem,
   selectLocationId,
+  selectSearchValue,
   selectSexItem,
   selectSpeciesItem,
 } from "@/app/redux/noticesFilters/slice";
@@ -68,6 +69,7 @@ const find: NextPage<findProps> = () => {
         locationId,
         byPopularity: byPopularity ?? undefined,
         byPrice: byPrice ?? undefined,
+        page: currentPage,
       })
     );
   }, [

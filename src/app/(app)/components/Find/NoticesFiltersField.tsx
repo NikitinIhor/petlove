@@ -37,7 +37,7 @@ const NoticesFiltersField: FC<NoticesFiltersFieldProps> = ({
         onChange={handleChange}
         onBlur={onBlur}
         aria-label={fieldPlaceholder}
-        className="w-full md:w-[265px] xl:w-[190px] appearance-none rounded-[30px] border border-gray-300 bg-white p-3 pr-10 outline-none focus:border-yellow-400"
+        className="cursor-pointer w-full md:w-[265px] xl:w-[190px] appearance-none rounded-[30px] border border-gray-300 bg-white p-3 pr-10 outline-none focus:border-yellow-400"
       >
         {specialOption && <option value="">{fieldPlaceholder}</option>}
         {selectOptions.map((option) => (

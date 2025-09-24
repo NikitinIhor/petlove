@@ -49,6 +49,8 @@ const noticesSlice = createSlice({
   },
 });
 
+export const { setCurrentPage } = noticesSlice.actions;
+
 export const selectNotices = (state: RootState) => state.notices.notices;
 export const selectLoading = (state: RootState) => state.notices.loading;
 export const selectError = (state: RootState) => state.notices.error;

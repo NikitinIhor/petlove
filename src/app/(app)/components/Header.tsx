@@ -144,7 +144,7 @@ const Header: NextPage<HeaderProps> = () => {
         ) : (
           <div className="flex items-center gap-2">
             <Link
-              className="hidden md:flex justify-center items-center text-white uppercase  md:w-[136px] md:h-[50px] bg-[rgba(246,184,61,1)] rounded-full
+              className="hidden xl:flex justify-center items-center text-white uppercase  md:w-[136px] md:h-[50px] bg-[rgba(246,184,61,1)] rounded-full
                hover:bg-[#F9B020] transition-colors duration-200 ease-in"
               href="/register"
               onClick={handleLogout}
@@ -160,16 +160,16 @@ const Header: NextPage<HeaderProps> = () => {
                 {userName}
               </span>
             </Link>
-
-            <button
-              onClick={() => setOpenMenu(true)}
-              type="button"
-              className="xl:hidden"
-            >
-              <IoMenu size={36} />
-            </button>
           </div>
         )}
+
+        <button
+          onClick={() => setOpenMenu(true)}
+          type="button"
+          className="xl:hidden"
+        >
+          <IoMenu size={36} />
+        </button>
       </div>
 
       {openMenu && (

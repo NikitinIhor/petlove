@@ -1,8 +1,10 @@
 import { NextPage } from "next";
 
-interface LearnMoreModalProps {}
+interface LearnMoreModalProps {
+  onClose: () => void;
+}
 
-const LearnMoreModal: NextPage<LearnMoreModalProps> = () => {
+const LearnMoreModal: NextPage<LearnMoreModalProps> = ({ onClose }) => {
   return <div>LearnMoreModal</div>;
 };
 

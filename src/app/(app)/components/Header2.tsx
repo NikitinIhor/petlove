@@ -100,6 +100,7 @@ const Header2 = () => {
               </span>
             </Link>
           )}
+
           <button
             onClick={() => setOpenMenu(true)}
             type="button"

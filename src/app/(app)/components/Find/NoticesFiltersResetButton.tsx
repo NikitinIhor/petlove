@@ -17,7 +17,7 @@ const NoticesFiltersResetButton: NextPage<
       onClick={() => {
         dispatch(resetFilters());
       }}
-      className="p-3 md:py-5 md:px-10 rounded-full flex ml-auto mb-5 bg-[#F6B83D] text-white
+      className="cursor-pointer p-3 md:py-5 md:px-10 rounded-full flex ml-auto mb-5 bg-[#F6B83D] text-white
       hover:bg-[#F9B020] transition-colors duration-200 ease-in"
     >
       Reset filters
