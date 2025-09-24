@@ -5,7 +5,11 @@ interface LearnMoreModalProps {
 }
 
 const LearnMoreModal: NextPage<LearnMoreModalProps> = ({ onClose }) => {
-  return <div>LearnMoreModal</div>;
+  return (
+    <div>
+      <button>ddfdfdfdf</button>
+    </div>
+  );
 };
 
 export default LearnMoreModal;

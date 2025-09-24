@@ -1,10 +1,13 @@
 "use client";
 
+import { selectIsLoggedIn } from "@/app/redux/auth/slice";
 import { NoticesItem as NoticesItemType } from "@/app/redux/notices/types";
 import { NextPage } from "next";
 import { useState } from "react";
 import { MdOutlineStarPurple500 } from "react-icons/md";
+import { useSelector } from "react-redux";
 import ModalWrapper from "../ModalWrapper";
+import AttentionModal from "./AttentionModal";
 import LearnMoreModal from "./LearnMoreModal";
 
 interface NoticesItemProps {
@@ -34,6 +37,8 @@ const NoticesItem: NextPage<NoticesItemProps> = ({ noticeData }) => {
     const [year, month, day] = birthday.split("-");
     birthdayFormatted = `${day}.${month}.${year}`;
   }
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -93,7 +98,11 @@ const NoticesItem: NextPage<NoticesItemProps> = ({ noticeData }) => {
 
       {openModal && (
         <ModalWrapper onClose={handleCloseModal}>
-          <LearnMoreModal onClose={handleCloseModal} />
+          {isLoggedIn ? (
+            <LearnMoreModal onClose={handleCloseModal} />
+          ) : (
+            <AttentionModal onClose={handleCloseModal} />
+          )}
         </ModalWrapper>
       )}
     </article>

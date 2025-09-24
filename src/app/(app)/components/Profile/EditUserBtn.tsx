@@ -29,7 +29,7 @@ const EditUserBtn: NextPage<EditUserBtnProps> = () => {
       </button>
       {openModal && (
         <ModalWrapper onClose={handleCloseModal}>
-          <EditModal />
+          <EditModal onClose={handleCloseModal} />
         </ModalWrapper>
       )}
     </>
