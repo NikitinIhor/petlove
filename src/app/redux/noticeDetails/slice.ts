@@ -8,13 +8,13 @@ export type RootState = ReturnType<typeof store.getState>;
 interface NoticeDetailState {
   loading: boolean;
   error: string | null;
-  notice: NoticeDetailsResponse | null;
+  noticeDetail: NoticeDetailsResponse | null;
 }
 
 const initialState: NoticeDetailState = {
   loading: false,
   error: null,
-  notice: null,
+  noticeDetail: null,
 };
 
 const noticeDetailsSlice = createSlice({
@@ -22,7 +22,7 @@ const noticeDetailsSlice = createSlice({
   initialState,
   reducers: {
     resetNoticeDetails(state) {
-      state.notice = null;
+      state.noticeDetail = null;
       state.loading = false;
       state.error = null;
     },
@@ -36,7 +36,7 @@ const noticeDetailsSlice = createSlice({
       .addCase(getNotice.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
-        state.notice = action.payload;
+        state.noticeDetail = action.payload;
       })
       .addCase(getNotice.rejected, (state, action) => {
         state.loading = false;
@@ -45,8 +45,15 @@ const noticeDetailsSlice = createSlice({
   },
 });
 
-export const selectLoading = (state: RootState) => state.notices.loading;
-export const selectError = (state: RootState) => state.notices.error;
-export const selectNotice = (state: RootState) => state.notices.notices;
+export const { resetNoticeDetails } = noticeDetailsSlice.actions;
+
+export const selectNoticeLoading = (state: RootState) =>
+  state.noticeDetails.loading;
+
+export const selectNoticeError = (state: RootState) =>
+  state.noticeDetails.error;
+
+export const selectNotice = (state: RootState) =>
+  state.noticeDetails.noticeDetail;
 
 export default noticeDetailsSlice.reducer;

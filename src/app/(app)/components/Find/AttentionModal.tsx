@@ -2,11 +2,9 @@ import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-interface AttentionModalProps {
-  onClose: () => void;
-}
+interface AttentionModalProps {}
 
-const AttentionModal: NextPage<AttentionModalProps> = ({ onClose }) => {
+const AttentionModal: NextPage<AttentionModalProps> = () => {
   return (
     <div>
       <div className="mx-auto mb-5 w-[80px] h-[80px] rounded-full bg-[var(--yellow-light)] flex items-center justify-center">
