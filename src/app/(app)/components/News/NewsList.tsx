@@ -25,7 +25,7 @@ const NewsList: NextPage<NewsListProps> = () => {
   return (
     <ul className="flex flex-col gap-6 pb-15 md:flex-row md:flex-wrap md:gap-8">
       {news.map((newsItem) => (
-        <li key={newsItem._id} className="w-[335px] md:h-[476px] mx-auto ">
+        <li key={newsItem._id} className="md:h-[476px] mx-auto ">
           <NewsItem newsData={newsItem} />
         </li>
       ))}

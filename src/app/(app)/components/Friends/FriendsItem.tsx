@@ -41,7 +41,7 @@ const FriendsItem: NextPage<FriendsItemProps> = ({
   }
 
   return (
-    <div className="w-[335px] h-[184px] md:w-[342px] md:h-[196px] xl:w-[371px] p-5 rounded-[15px] bg-[rgba(255,255,255,1)] relative flex items-center gap-4">
+    <div className="h-[184px] md:w-[342px] md:h-[196px] xl:w-[371px] p-5 rounded-[15px] bg-[rgba(255,255,255,1)] relative flex items-center gap-4">
       <div className="rounded-full">
         <img src={imageUrl} alt={title} width="90" height="90" loading="lazy" />
       </div>

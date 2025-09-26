@@ -64,7 +64,7 @@ const NoticesItem: FC<NoticesItemProps> = ({ noticeData }) => {
 
   return (
     <article className="p-6 bg-white rounded-[16px] flex flex-col gap-6">
-      <div className="w-[287px] h-[178px] md:w-[294px] xl:w-[315px] rounded-[16px] overflow-hidden">
+      <div className="h-[178px] md:w-[294px] xl:w-[315px] rounded-[16px] overflow-hidden">
         <Image
           src={imgURL}
           alt={title}
