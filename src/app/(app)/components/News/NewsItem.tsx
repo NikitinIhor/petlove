@@ -1,4 +1,5 @@
-import type { NewsItem as NewsItemType } from "@/app/redux/types";
+import type { NewsItem as NewsItemType } from "@/app/redux/news/types";
+
 import { NextPage } from "next";
 
 interface NewsItemProps {
