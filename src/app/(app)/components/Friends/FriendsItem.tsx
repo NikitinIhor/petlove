@@ -1,7 +1,8 @@
 import type {
   FriendsItem as FriendsItemType,
   WorkDaysItem,
-} from "@/app/redux/types";
+} from "@/app/redux/friends/types";
+
 import { NextPage } from "next";
 
 interface FriendsItemProps {
