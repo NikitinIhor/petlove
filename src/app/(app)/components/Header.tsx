@@ -130,7 +130,7 @@ const Header: NextPage<HeaderProps> = () => {
             </Link>
           </div>
         ) : (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <Link
               className="hidden xl:flex justify-center items-center text-white uppercase  md:w-[136px] md:h-[50px] bg-[rgba(246,184,61,1)] rounded-full
                hover:bg-[#F9B020] transition-colors duration-200 ease-in"
@@ -190,16 +190,16 @@ const Header: NextPage<HeaderProps> = () => {
           </nav>
 
           {!isLoggedIn ? (
-            <div className="pb-10 px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-2 items-center border-t border-gray-300 bg-[#F6B83D]">
+            <div className="pb-10 px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-3 items-center border-t border-gray-300 bg-[#F6B83D]">
               <Link
-                className="flex justify-center items-center border border-white text-white uppercase w-full md:w-[120px] h-10 bg-[var(--yellow)] rounded-full"
+                className="flex justify-center items-center border border-white text-white uppercase w-[150px] h-10 bg-[var(--yellow)] rounded-full"
                 href="/login"
                 onClick={() => setOpenMenu(false)}
               >
                 Log In
               </Link>
               <Link
-                className="flex justify-center items-center text-[#F6B83D] uppercase w-full md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+                className="flex justify-center items-center text-[#F6B83D] uppercase w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
                 href="/register"
                 onClick={() => setOpenMenu(false)}
               >
@@ -207,13 +207,15 @@ const Header: NextPage<HeaderProps> = () => {
               </Link>
             </div>
           ) : (
-            <Link
-              className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
-              href="/register"
-              onClick={handleLogout}
-            >
-              Log out
-            </Link>
+            <div className="pb-10">
+              <Link
+                className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+                href="/register"
+                onClick={handleLogout}
+              >
+                Log out
+              </Link>
+            </div>
           )}
         </div>
       )}

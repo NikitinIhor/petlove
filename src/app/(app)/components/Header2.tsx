@@ -164,15 +164,15 @@ const Header2 = () => {
           </nav>
 
           {!isLoggedIn ? (
-            <div className="px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-2 items-center border-t border-gray-300 bg-white">
+            <div className="px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-3 items-center border-t border-gray-300 bg-white">
               <Link
-                className="flex justify-center items-center text-white uppercase w-full md:w-[120px] h-10 bg-[var(--yellow)] rounded-full"
+                className="flex justify-center items-center text-white uppercase w-[150px] h-10 bg-[var(--yellow)] rounded-full"
                 href="/login"
               >
                 Log In
               </Link>
               <Link
-                className="flex justify-center items-center text-[#F6B83D] uppercase w-full md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+                className="flex justify-center items-center text-[#F6B83D] uppercase w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
                 href="/register"
               >
                 Registration
