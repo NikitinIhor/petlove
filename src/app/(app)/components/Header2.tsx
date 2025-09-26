@@ -179,7 +179,7 @@ const Header2 = () => {
               </Link>
             </div>
           ) : (
-            <div className="mb-15">
+            <div className="mb-[80px]">
               <Link
                 className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
                 href="/register"
