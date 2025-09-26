@@ -202,7 +202,7 @@ const Header: NextPage<HeaderProps> = () => {
           </nav>
 
           {!isLoggedIn ? (
-            <div className="px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-2 items-center border-t border-gray-300 bg-[#F6B83D]">
+            <div className="pb-10 px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-2 items-center border-t border-gray-300 bg-[#F6B83D]">
               <Link
                 className="flex justify-center items-center border border-white text-white uppercase w-full md:w-[120px] h-10 bg-[var(--yellow)] rounded-full"
                 href="/login"

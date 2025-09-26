@@ -10,7 +10,7 @@ const login: NextPage<loginProps> = () => {
     <div className="container xl:flex gap-8">
       <div className="relative md:bg-[var(--yellow)] md:rounded-[60px] xl:flex-1/2">
         <div
-          className="mb-9 w-[335px] h-full mx-auto md:mx-0 md:ml-auto md:mr-[50px]
+          className="mb-9 h-full mx-auto md:mx-0 md:ml-auto md:mr-[50px]
         xl:mx-auto xl:w-[536px] xl:h-[623px] xl:mb-0"
         >
           <Image

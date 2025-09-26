@@ -135,7 +135,7 @@ const Header2 = () => {
       </div>
 
       {openMenu && (
-        <div className="fixed xl:hidden top-0 right-0 bg-white w-[218px] md:w-[374px] h-screen z-50 flex flex-col transition-transform duration-300 ease-in-out translate-x-0 opacity-100">
+        <div className="pb-10 fixed xl:hidden top-0 right-0 bg-white w-[218px] md:w-[374px] h-screen z-50 flex flex-col transition-transform duration-300 ease-in-out translate-x-0 opacity-100">
           <button
             onClick={() => setOpenMenu(false)}
             type="button"
