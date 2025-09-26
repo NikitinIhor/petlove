@@ -110,25 +110,34 @@ const Header: NextPage<HeaderProps> = () => {
         </nav>
 
         {!isLoggedIn ? (
-          <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
-            <Link
-              className="flex justify-center items-center text-white uppercase
+          <>
+            <div className="hidden md:flex ml-auto mr-4  gap-2 items-center">
+              <Link
+                className="flex justify-center items-center text-white uppercase
               w-[119px] h-[50px] bg-[#F6B83D] rounded-full
               hover:bg-[#F9B020] transition-colors duration-200 ease-in"
-              href="/login"
-            >
-              Log In
-            </Link>
+                href="/login"
+              >
+                Log In
+              </Link>
 
-            <Link
-              className="flex justify-center items-center text-[#F6B83D] uppercase
+              <Link
+                className="flex justify-center items-center text-[#F6B83D] uppercase
             w-[149px] h-[50px] bg-[#FFF4DF] rounded-full
             hover:bg-[#FBE7C1] transition-colors duration-200 ease-in"
-              href="/register"
+                href="/register"
+              >
+                Registration
+              </Link>
+            </div>
+            <button
+              onClick={() => setOpenMenu(true)}
+              type="button"
+              className="xl:hidden"
             >
-              Registration
-            </Link>
-          </div>
+              <IoMenu size={36} />
+            </button>
+          </>
         ) : (
           <div className="flex items-center gap-2">
             <Link
@@ -190,7 +199,7 @@ const Header: NextPage<HeaderProps> = () => {
           </nav>
 
           {!isLoggedIn ? (
-            <div className="pb-10 px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-3 items-center border-t border-gray-300 bg-[#F6B83D]">
+            <div className="pb-12 px-4 mb-5 flex flex-col md:flex-row md:justify-center gap-3 items-center border-t border-gray-300 bg-[#F6B83D]">
               <Link
                 className="flex justify-center items-center border border-white text-white uppercase w-[150px] h-10 bg-[var(--yellow)] rounded-full"
                 href="/login"
@@ -207,7 +216,7 @@ const Header: NextPage<HeaderProps> = () => {
               </Link>
             </div>
           ) : (
-            <div className="pb-10">
+            <div className="pb-12">
               <Link
                 className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
                 href="/register"
