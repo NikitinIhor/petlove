@@ -179,13 +179,15 @@ const Header2 = () => {
               </Link>
             </div>
           ) : (
-            <Link
-              className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
-              href="/register"
-              onClick={handleLogout}
-            >
-              Log out
-            </Link>
+            <div className="mb-15">
+              <Link
+                className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
+                href="/register"
+                onClick={handleLogout}
+              >
+                Log out
+              </Link>
+            </div>
           )}
         </div>
       )}

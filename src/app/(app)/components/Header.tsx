@@ -216,7 +216,7 @@ const Header: NextPage<HeaderProps> = () => {
               </Link>
             </div>
           ) : (
-            <div className="pb-12">
+            <div className="mb-15">
               <Link
                 className="flex justify-center items-center mx-auto text-[#F6B83D] uppercase w-1/2 md:w-[150px] h-10 bg-[var(--yellow-light)] rounded-full"
                 href="/register"
