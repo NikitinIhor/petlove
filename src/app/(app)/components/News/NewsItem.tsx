@@ -14,7 +14,7 @@ const NewsItem: NextPage<NewsItemProps> = ({ newsData }) => {
   const formattedDate = newDate.toLocaleDateString("en-GB");
 
   return (
-    <article className="flex flex-col md:h-[476px]">
+    <article className="md:w-[320px] flex flex-col md:h-[476px]">
       <div className="mb-7">
         <img
           src={imgUrl}
@@ -22,7 +22,7 @@ const NewsItem: NextPage<NewsItemProps> = ({ newsData }) => {
           width="361"
           height="226"
           loading="lazy"
-          className="w-[335px] h-[226px] rounded-[16px]"
+          className="md:w-[340px] h-[226px] rounded-[16px]"
         />
       </div>
       <h3 className="font-bold mb-3 md:text-[18px] leading-snug">{title}</h3>
